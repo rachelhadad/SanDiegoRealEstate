@@ -4,10 +4,10 @@ import matplotlib as mpl
 import sqlite3
 cities = ["Carlsbad", "Del-Mar", "Solana-Beach", "Encinitas", "Carmel-Valley"]
 
-con = sqlite3.connect('sandiegorealestate.db')
-cur = con.cursor()
+# con = sqlite3.connect('sandiegorealestate.db')
+# cur = con.cursor()
 
-def show_graph():
+def show_graph(con):
     fig, ax = plt.subplots()
     ax.ticklabel_format(style='plain')
     plt.xticks(rotation=45)
@@ -20,5 +20,4 @@ def show_graph():
 
     plt.show()
 
-show_graph()  
-con.close()
+# con.close()

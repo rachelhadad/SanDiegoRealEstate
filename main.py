@@ -16,7 +16,8 @@ DRIVER_PATH = os.environ.get("chrome_driver_path")
 driver = webdriver.Chrome(executable_path=DRIVER_PATH)
 actions = ActionChains(driver)
 filter_criteria = "/filter/property-type=house,min-beds=3,min-baths=2,min-sqft=3k-sqft,status=active"
-cities = [ {"name": "Carlsbad",
+cities = [ 
+            {"name": "Carlsbad",
             "all_url": "https://www.redfin.com/city/2891/CA/Carlsbad/filter/status=active",
             "filtered_url": f"https://www.redfin.com/city/2891/CA/Carlsbad{filter_criteria}"},
             {"name": "Del-Mar",
@@ -30,7 +31,10 @@ cities = [ {"name": "Carlsbad",
             "filtered_url": f"https://www.redfin.com/city/5844/CA/Encinitas{filter_criteria}"},
             {"name": "Carmel-Valley",
             "all_url": "https://www.redfin.com/neighborhood/371/CA/San-Diego/Carmel-Valley/filter/status=active",
-            "filtered_url": f"https://www.redfin.com/neighborhood/371/CA/San-Diego/Carmel-Valley{filter_criteria}"}
+            "filtered_url": f"https://www.redfin.com/neighborhood/371/CA/San-Diego/Carmel-Valley{filter_criteria}"},
+            # {"name": "Santa-Barbara",
+            # "all_url": "https://www.redfin.com/city/17669/CA/Santa-Barbara/filter/status=actuve",
+            # "filtered_url": f"https://www.redfin.com/city/17669/CA/Santa-Barbara{filter_criteria}"}
         ]
 
 def get_num_of_houses():
@@ -143,5 +147,5 @@ for city in cities:
     time.sleep(2)
     get_averages(city["filtered_url"], "my_listings", "my_averages", city["name"])
 
-show_graph()
+show_graph(con)
 con.close()
