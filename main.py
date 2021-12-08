@@ -32,6 +32,10 @@ cities = [
             {"name": "Carmel-Valley",
             "all_url": "https://www.redfin.com/neighborhood/371/CA/San-Diego/Carmel-Valley/filter/status=active",
             "filtered_url": f"https://www.redfin.com/neighborhood/371/CA/San-Diego/Carmel-Valley{filter_criteria}"},
+            {"name": "Fallbrook",
+            "all_url": "https://www.redfin.com/city/22605/CA/Fallbrook/filter/status=active",
+            "filtered_url": f"https://www.redfin.com/city/22605/CA/Fallbrook{filter_criteria}"
+            }
             # {"name": "Santa-Barbara",
             # "all_url": "https://www.redfin.com/city/17669/CA/Santa-Barbara/filter/status=actuve",
             # "filtered_url": f"https://www.redfin.com/city/17669/CA/Santa-Barbara{filter_criteria}"}
@@ -83,7 +87,7 @@ def get_listings(driver_url, all_table_name, city):
             clean_sq_ft = float(split_sq_ft[0])
             if split_sq_ft[1] == 'Sq.':
                 sq_ft = clean_sq_ft
-            elif split_sq_ft[1] == 'Acres':
+            elif split_sq_ft[1] == 'Acre' or split_sq_ft[1] == 'Acres':
                 sq_ft = round(clean_sq_ft * 43560)
             pricepersqft = round(list_price / sq_ft, 2)
             cur.execute(f"INSERT INTO {all_table_name} (date, city, listing_price, sq_ft, price_per_sq_ft) VALUES (?, ?, ?, ?, ?)", (today, city, list_price, sq_ft, pricepersqft,))
